@@ -1,0 +1,4 @@
+SANITY_VERSION 1
+TMPDIR /home/jean/BA_Projets/bktel/git/bktel/yocto/build/tmp
+SSTATE_DIR /home/jean/BA_Projets/yocto/sstate-cache
+NATIVELSBSTRING DebianGNULinux-8

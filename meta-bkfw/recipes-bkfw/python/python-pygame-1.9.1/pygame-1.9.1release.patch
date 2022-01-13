@@ -1,0 +1,64 @@
+diff -rupN pygame-1.9.1release.orig/Setup.in pygame-1.9.1release/Setup.in
+--- pygame-1.9.1release.orig/Setup.in	2009-07-01 23:41:56.000000000 -0500
++++ pygame-1.9.1release/Setup.in	2013-06-23 19:27:04.000000000 -0500
+@@ -7,12 +7,12 @@
+ 
+ 
+ #--StartConfig
+-SDL = -I/usr/include/SDL -D_REENTRANT -lSDL
+-FONT = -lSDL_ttf
+-IMAGE = -lSDL_image
+-MIXER = -lSDL_mixer
++SDL = -I$(STAGING_INCDIR)/SDL -D_REENTRANT  -l$(STAGING_LIBDIR)/SDL 
++FONT = -l$(STAGING_LIBDIR)/SDL_ttf
++IMAGE = -l$(STAGING_LIBDIR)/SDL_image
++MIXER = -l(STAGING_LIBDIR)/SDL_mixer
+ SMPEG = -lsmpeg
+-PNG = -lpng
++PNG = -I$(STAGING_INCDIR) -lpng
+ JPEG = -ljpeg
+ SCRAP = -lX11
+ PORTMIDI = -lportmidi
+@@ -26,16 +26,16 @@ DEBUG = 
+ #everything you can, but you can ignore ones you don't have
+ #dependencies for, just comment them out
+ 
+-imageext src/imageext.c $(SDL) $(IMAGE) $(PNG) $(JPEG) $(DEBUG)
++#imageext src/imageext.c $(SDL) $(IMAGE) $(PNG) $(JPEG) $(DEBUG)
+ font src/font.c $(SDL) $(FONT) $(DEBUG)
+ mixer src/mixer.c $(SDL) $(MIXER) $(DEBUG)
+ mixer_music src/music.c $(SDL) $(MIXER) $(DEBUG)
+ _numericsurfarray src/_numericsurfarray.c $(SDL) $(DEBUG)
+ _numericsndarray src/_numericsndarray.c $(SDL) $(MIXER) $(DEBUG)
+-movie src/movie.c $(SDL) $(SMPEG) $(DEBUG)
+-scrap src/scrap.c $(SDL) $(SCRAP) $(DEBUG)
+-_camera src/_camera.c src/camera_v4l2.c src/camera_v4l.c $(SDL) $(DEBUG)
+-pypm src/pypm.c $(SDL) $(PORTMIDI) $(PORTTIME) $(DEBUG)
++#movie src/movie.c $(SDL) $(SMPEG) $(DEBUG)
++#scrap src/scrap.c $(SDL) $(SCRAP) $(DEBUG)
++#_camera src/_camera.c src/camera_v4l2.c src/camera_v4l.c $(SDL) $(DEBUG)
++#pypm src/pypm.c $(SDL) $(PORTMIDI) $(PORTTIME) $(DEBUG)
+ 
+ GFX = src/SDL_gfx/SDL_gfxPrimitives.c 
+ #GFX = src/SDL_gfx/SDL_gfxBlitFunc.c src/SDL_gfx/SDL_gfxPrimitives.c 
+diff -rupN pygame-1.9.1release.orig/setup.py pygame-1.9.1release/setup.py
+--- pygame-1.9.1release.orig/setup.py	2009-08-06 03:28:54.000000000 -0500
++++ pygame-1.9.1release/setup.py	2013-06-15 19:43:10.000000000 -0500
+@@ -30,7 +30,6 @@ if "bdist_msi" in sys.argv:
+     METADATA["version"] = METADATA["version"].replace("pre", "a0")
+     METADATA["version"] = METADATA["version"].replace("rc", "b0")
+     METADATA["version"] = METADATA["version"].replace("release", "")
+-    
+ 
+ if not hasattr(sys, 'version_info') or sys.version_info < (2,3):
+     raise SystemExit("Pygame requires Python version 2.3 or above.")
+@@ -570,6 +569,8 @@ if "install" in sys.argv:
+     # only call after a successful install.  Should only reach here if there is
+     #   a successful install... otherwise setup() raises an error.
+     try:
++        if "single-version-externally-managed" in sys.argv:
++            sys.argv.remove ("-single-version-externally-managed")
+         remove_old_files()
+     except:
+         pass
+
