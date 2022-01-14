@@ -14,10 +14,11 @@ SRC_URI = "file://roa_2edfa/roa.py \
 	 	   file://roa_2edfa/factory.config"
 
 RDEPENDS_${PN} += " \
+		   python \
 	       python-modules \
 	       python-requests \
 	       python-crypt \
-	       adafruit-charlcd \
+		   adafruit-charlcd \
 	       "
 
 do_install() {
