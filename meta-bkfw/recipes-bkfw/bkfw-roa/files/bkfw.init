@@ -1,0 +1,47 @@
+#! /bin/sh
+### BEGIN INIT INFO
+# Provides:          bkfw
+# Required-Start:    $remote_fs $syslog $networking
+# Required-Stop:     $remote_fs $syslog
+# Default-Start:     2 3 4 5
+# Default-Stop:      0 1 6
+# Short-Description: BKFW EDFA firmware
+# Description:       This file should be used to construct scripts to be
+#                    placed in /etc/init.d.
+### END INIT INFO
+
+# Author: Jean Parpaillon <jean.parpaillon@free.fr>
+
+# PATH should only include /usr/* if it runs after the mountnfs.sh script
+PATH=/sbin:/usr/sbin:/bin:/usr/bin
+#DESC="BKFW EDFA firmware"
+NAME=bkfw
+DAEMON=/srv/bkfw/bin/$NAME
+SCRIPTNAME=/etc/init.d/$NAME
+
+# Exit if the package is not installed
+[ -x "$DAEMON" ] || exit 0
+
+case "$1" in
+	start)
+		stty -F /dev/ttyAMA0 115200 cs8 -cstopb -onlcr -echo -echoe -echok -opost || true
+		stty -F /dev/ttyUSB* 115200 cs8 -cstopb -onlcr -echo -echoe -echok -opost || true
+		$DAEMON start
+		;;
+	stop)
+		$DAEMON stop
+		;;
+	status)
+		$DAEMON ping
+		;;
+	restart|force-reload)
+		$DAEMON reboot
+		;;
+	*)
+		#echo "Usage: $SCRIPTNAME {start|stop|restart|reload|force-reload}" >&2
+		echo "Usage: $SCRIPTNAME {start|stop|status|restart|force-reload}" >&2
+		exit 3
+		;;
+esac
+
+:

@@ -36,6 +36,9 @@ INHIBIT_PACKAGE_STRIP = '1'
 INITSCRIPT_NAME = "bkfw"
 INITSCRIPT_PARAMS = "defaults 99"
 
+PREFERRED_VERSION_erlang = "21.3.8.24"
+PREFERRED_VERSION_erlang-native = "21.3.8.24"
+
 do_compile() {
   RELX_CONFIG=/invalid oe_runmake
 }
