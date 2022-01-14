@@ -23,5 +23,6 @@ RDEPENDS_${PN} += " \
 do_install() {
 	install -d ${D}/usr/bin
 	install -m 755 -o root -g root ${WORKDIR}/roa_2edfa/roa.py ${D}/usr/bin/roa.py
+	install -d ${D}${localstatedir}/lib/bkfw
 	install -m 644 -o root -g root ${WORKDIR}/roa_2edfa/factory.config ${D}${localstatedir}/lib/bkfw/factory.config
 }
