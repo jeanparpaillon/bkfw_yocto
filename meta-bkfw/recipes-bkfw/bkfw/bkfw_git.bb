@@ -56,7 +56,7 @@ do_install() {
   chgrp -R bktel ${D}${servicedir}
 
   install -d ${D}${localstatedir}/lib/bkfw
-  echo "[]." > ${D}${localstatedir}/lib/bkfw/factory.config
+  # echo "[]." > ${D}${localstatedir}/lib/bkfw/factory.config
   echo "[]." > ${D}${localstatedir}/lib/bkfw/user.config
 
   install -d ${D}${localstatedir}/lib/bkfw/upload
