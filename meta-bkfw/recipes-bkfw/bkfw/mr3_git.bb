@@ -10,7 +10,12 @@ PACKAGES = "${PN}"
 PR = "r1"
 
 #S = "${TMPDIR}/../../.."
-SRC_URI = "git://github.com/jeanparpaillon/bkfw_mr3.git;rev=e83e562ba56865cadc09dac8601f288b76fa9e14"
+SRC_URI = "\
+  git://github.com/jeanparpaillon/bkfw_mr3.git;rev=aff3bf481aa2e36c8e26972f9ef5d1089eb683cb \
+  file://logo/bktel_logo.png \
+  file://logo/l2k_logo.png \
+  file://logo/Packetlight_logo.png \
+  "
 S = "${WORKDIR}/git"
 
 PARALLEL_MAKE = ""
@@ -71,6 +76,10 @@ do_install() {
   install -d -o root -g root ${D}${sysconfdir}/init.d
   install -m 755 -o root -g root ${S}/debian/bkfw.init ${D}${sysconfdir}/init.d/bkfw
 
+  install -d -o bktel -g bktel ${D}${localstatedir}/lib/bkfw/logos
+  for logo in ${WORKDIR}/logo/*; do
+      install -m 644 -o bktel -g bktel $logo ${D}${localstatedir}/lib/bkfw/logos/`basename $logo`
+  done
 }
 
 FILES_${PN} += " \
