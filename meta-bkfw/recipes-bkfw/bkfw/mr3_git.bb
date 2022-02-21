@@ -10,7 +10,7 @@ PACKAGES = "${PN}"
 PR = "r1"
 
 #S = "${TMPDIR}/../../.."
-SRC_URI = "git://github.com/jeanparpaillon/bkfw_mr3.git;rev=bb0b7514f427c7b1487a600c775d181d49e9b739"
+SRC_URI = "git://github.com/jeanparpaillon/bkfw_mr3.git;rev=e83e562ba56865cadc09dac8601f288b76fa9e14"
 S = "${WORKDIR}/git"
 
 PARALLEL_MAKE = ""
