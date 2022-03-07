@@ -708,6 +708,7 @@ Button_BOT	= 3
 Button_LEFT	= 4
 Button_RIGHT	= 10
 Button_SET	= 9
+bouncetime = 400
 
 GPIO.setup(Button_TOP,GPIO.IN)
 GPIO.setup(Button_BOT,GPIO.IN)
@@ -715,11 +716,11 @@ GPIO.setup(Button_LEFT,GPIO.IN)
 GPIO.setup(Button_RIGHT,GPIO.IN)
 GPIO.setup(Button_SET,GPIO.IN)
 
-GPIO.add_event_detect(Button_TOP,GPIO.RISING)
-GPIO.add_event_detect(Button_BOT,GPIO.RISING)
-GPIO.add_event_detect(Button_LEFT,GPIO.RISING)
-GPIO.add_event_detect(Button_RIGHT,GPIO.RISING)
-GPIO.add_event_detect(Button_SET,GPIO.RISING)
+GPIO.add_event_detect(Button_TOP,GPIO.RISING, bouncetime=bouncetime)
+GPIO.add_event_detect(Button_BOT,GPIO.RISING, bouncetime=bouncetime)
+GPIO.add_event_detect(Button_LEFT,GPIO.RISING, bouncetime=bouncetime)
+GPIO.add_event_detect(Button_RIGHT,GPIO.RISING, bouncetime=bouncetime)
+GPIO.add_event_detect(Button_SET,GPIO.RISING, bouncetime=bouncetime)
 
 
 # INIT
