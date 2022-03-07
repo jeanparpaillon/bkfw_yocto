@@ -11,7 +11,7 @@ PR = "r1"
 
 #S = "${TMPDIR}/../../.."
 SRC_URI = "\
-  git://github.com/jeanparpaillon/bkfw_mr3.git;rev=aff3bf481aa2e36c8e26972f9ef5d1089eb683cb \
+  git://github.com/jeanparpaillon/bkfw_mr3.git;rev=7ea56e6e2c453de73ff65137638dd26c152c4437 \
   file://logo/bktel_logo.png \
   file://logo/l2k_logo.png \
   file://logo/Packetlight_logo.png \
@@ -61,7 +61,7 @@ do_install() {
   chgrp -R bktel ${D}${servicedir}
 
   install -d ${D}${localstatedir}/lib/bkfw
-  echo "[]." > ${D}${localstatedir}/lib/bkfw/factory.config
+  # install -o bktel -g bktel ${WORKDIR}/mr3/factory.config ${D}${localstatedir}/lib/bkfw/factory.config
   echo "[]." > ${D}${localstatedir}/lib/bkfw/user.config
 
   install -d ${D}${localstatedir}/lib/bkfw/upload

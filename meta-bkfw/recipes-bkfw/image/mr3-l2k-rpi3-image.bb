@@ -5,7 +5,7 @@ IMAGE_INSTALL += "\
     nano \
     "
 
-export IMAGE_BASENAME = "mr3-rpi3"
+export IMAGE_BASENAME = "mr3-l2k-rpi3"
 
 R = "r1"
 
@@ -25,4 +25,16 @@ setup_target_image() {
 
     mv ${IMAGE_ROOTFS}${sysconfdir}/inittab ${IMAGE_ROOTFS}${sysconfdir}/inittab.serial
     sed -e 's/^AMA0.*//' ${IMAGE_ROOTFS}${sysconfdir}/inittab.serial > ${IMAGE_ROOTFS}${sysconfdir}/inittab
+
+    install -d -m -0755 -o bktel -g bktel ${IMAGE_ROOTFS}${localstatedir}/lib/bkfw
+    cat <<EOF > ${IMAGE_ROOTFS}${localstatedir}/lib/bkfw/factory.config
+[
+  {bkfw,
+    [
+      {logo, "/var/lib/bkfw/logos/l2k_logo.png"},
+      {debug,false}
+    ] 
+  }
+].
+EOF
 }
