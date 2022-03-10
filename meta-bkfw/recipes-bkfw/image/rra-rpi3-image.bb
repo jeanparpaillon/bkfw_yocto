@@ -1,8 +1,8 @@
 require recipes-core/images/core-image-base.bb
 
 IMAGE_INSTALL += "\
-    bkfw \
-    roa \
+    bkfw-rra \
+    roa-rra \
     nano \
     "
 
