@@ -9,7 +9,7 @@ PACKAGES = "${PN}"
 PR = "r1"
 
 S = "${WORKDIR}/git"
-SRC_URI = "git://github.com/jeanparpaillon/bkfw_rra_rpi3.git;rev=d36c2336286eba1af0da166a6eb7bab8f08300ea;branch=rra"
+SRC_URI = "git://github.com/jeanparpaillon/bkfw_rra_rpi3.git;rev=10915d95f3d540943766eb0cae0c674d0ecb5076;branch=rra"
 
 PARALLEL_MAKE = ""
 
