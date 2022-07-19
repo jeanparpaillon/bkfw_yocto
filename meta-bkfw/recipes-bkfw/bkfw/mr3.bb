@@ -11,7 +11,7 @@ PR = "r1"
 
 #S = "${TMPDIR}/../../.."
 SRC_URI = "\
-  git://github.com/jeanparpaillon/bkfw_mr3.git;rev=b0d24bc0158c5336ba94a7174a49537b185e193c \
+  git://github.com/jeanparpaillon/bkfw_mr3.git;rev=a94cd86626bd58878712c22f352feedaef946114 \
   file://logo/bktel_logo.png \
   file://logo/l2k_logo.png \
   file://logo/Packetlight_logo.png \
