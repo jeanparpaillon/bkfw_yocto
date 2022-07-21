@@ -6,6 +6,9 @@ LICENSE = "CLOSED"
 #LIC_FILES_CHKSUM = "file://COPYING;md5=aa9dd28ba4e8988d5ef23897cd630463"
 
 PACKAGES = "${PN}"
+ 
+# Set ipk package name (need to be sync with check_pkg script)
+# PKG_mr3 = "bkfw"
 
 PR = "r1"
 
