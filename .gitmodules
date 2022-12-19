@@ -1,0 +1,27 @@
+[submodule "poky"]
+	path = poky
+	url = git://git.yoctoproject.org/poky.git
+	branch = krogoth
+[submodule "bkfw"]
+	path = bkfw
+	url = git@github.com:jeanparpaillon/bkfw-yocto.git
+[submodule "meta-erlang"]
+	path = meta-erlang
+	url = https://github.com/joaohf/meta-erlang
+[submodule "meta-openembedded"]
+	path = meta-openembedded
+	url = git://git.openembedded.org/meta-openembedded
+[submodule "meta-raspberrypi"]
+	path = meta-raspberrypi
+	url = git@github.com:agherzan/meta-raspberrypi.git
+	branch = hardknott
+[submodule "meta-rpi"]
+	path = meta-rpi
+	url = git@github.com:jumpnow/meta-rpi
+	branch = krogoth
+[submodule "meta-python2"]
+	path = meta-python2
+	url = https://git.openembedded.org/meta-python2
+[submodule "docker/asdf"]
+	path = docker/asdf
+	url = https://github.com/asdf-vm/asdf.git
