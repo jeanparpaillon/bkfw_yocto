@@ -17,7 +17,7 @@ inherit useradd
 inherit erlang
 inherit update-rc.d
 
-DEPENDS += "erlang-native openssl curl"
+DEPENDS += "erlang-native openssl curl-native"
 RDEPENDS_${PN} += "gawk erlang"
 
 EXTRA_OEMAKE = "all"
@@ -38,15 +38,24 @@ PREFERRED_VERSION_erlang = "21.3.8.24"
 PREFERRED_VERSION_erlang-native = "21.3.8.24"
 
 do_compile() {
-  RELX_CONFIG=/invalid oe_runmake
+  RELX_CONFIG=/nonexistent \
+    CURL_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt \
+    oe_runmake
 }
 
 do_install() {
   install -d ${D}${servicedir}
 
-  ${S}/relx --system_libs ${STAGING_LIBDIR}/erlang/lib \
-    -c ${S}/rel/prod/relx.config \
-    -o ${D}${servicedir}
+  RELX_CONFIG="${S}/rel/prod/relx.config" \
+    RELX_OPTS="--system_libs ${STAGING_LIBDIR}/erlang/lib" \
+    RELX_OUTPUT_DIR="${D}${servicedir}" \
+    V=1 \
+    CURL_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt \
+    oe_runmake
+
+  # ${S}/.erlang.mk/relx --system_libs ${STAGING_LIBDIR}/erlang/lib \
+  #   -c ${S}/rel/prod/relx.config \
+  #   -o ${D}${servicedir}
 
   find ${D}${servicedir} -name '*.erl' -exec rm {} \;
   rm -rf ${D}${prefix}/src/debug
