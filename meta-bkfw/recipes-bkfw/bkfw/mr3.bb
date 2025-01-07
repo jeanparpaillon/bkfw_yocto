@@ -13,8 +13,9 @@ PACKAGES = "${PN}"
 PR = "r1"
 
 #S = "${TMPDIR}/../../.."
+GITREV = "32bb650f38c5427a0f10f8443800ac32590d91a6"
 SRC_URI = "\
-  git://github.com/jeanparpaillon/bkfw_mr3.git;rev=48bcd919b2bf994cab03f290c775bcce5164696d \
+  git://github.com/jeanparpaillon/bkfw_mr3.git;rev=${GITREV} \
   file://logo/bktel_logo.png \
   file://logo/l2k_logo.png \
   file://logo/Packetlight_logo.png \
